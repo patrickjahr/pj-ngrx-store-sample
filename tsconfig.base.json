@@ -18,6 +18,9 @@
       "@lt/backend/conferences": ["libs/backend/conferences/src/index.ts"],
       "@lt/backend/contributions": ["libs/backend/contributions/src/index.ts"],
       "@lt/backend/speakers": ["libs/backend/speakers/src/index.ts"],
+      "@lt/lets-talk/conferences/feature": [
+        "libs/lets-talk/conferences/feature/src/index.ts"
+      ],
       "@lt/shared/typescript/domain": [
         "libs/shared/typescript/domain/src/index.ts"
       ]
