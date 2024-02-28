@@ -27,6 +27,9 @@
       "@lt/lets-talk/contributions/feature": [
         "libs/lets-talk/contributions/feature/src/index.ts"
       ],
+      "@lt/lets-talk/speakers/data-access": [
+        "libs/lets-talk/speakers/data-access/src/index.ts"
+      ],
       "@lt/lets-talk/speakers/feature": [
         "libs/lets-talk/speakers/feature/src/index.ts"
       ],
