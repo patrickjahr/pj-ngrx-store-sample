@@ -1,0 +1,9 @@
+{
+  "name": "feature-contributions",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lets-talk/contributions/feature/src",
+  "prefix": "paddsen-next",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
