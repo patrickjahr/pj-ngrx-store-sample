@@ -21,6 +21,9 @@
       "@lt/lets-talk/conferences/feature": [
         "libs/lets-talk/conferences/feature/src/index.ts"
       ],
+      "@lt/lets-talk/speakers/feature": [
+        "libs/lets-talk/speakers/feature/src/index.ts"
+      ],
       "@lt/shared/typescript/domain": [
         "libs/shared/typescript/domain/src/index.ts"
       ]

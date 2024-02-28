@@ -1,0 +1,9 @@
+{
+  "name": "feature-speakers",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lets-talk/speakers/feature/src",
+  "prefix": "paddsen-next",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
