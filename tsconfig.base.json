@@ -21,6 +21,9 @@
       "@lt/lets-talk/conferences/feature": [
         "libs/lets-talk/conferences/feature/src/index.ts"
       ],
+      "@lt/lets-talk/contributions/data-access": [
+        "libs/lets-talk/contributions/data-access/src/index.ts"
+      ],
       "@lt/lets-talk/contributions/feature": [
         "libs/lets-talk/contributions/feature/src/index.ts"
       ],

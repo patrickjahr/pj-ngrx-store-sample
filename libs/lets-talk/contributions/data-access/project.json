@@ -1,0 +1,9 @@
+{
+  "name": "data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lets-talk/contributions/data-access/src",
+  "prefix": "paddsen-next",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
