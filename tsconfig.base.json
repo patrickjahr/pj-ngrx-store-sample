@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lt/backend/conferences": ["libs/backend/conferences/src/index.ts"],
       "@lt/shared/typescript/domain": [
         "libs/shared/typescript/domain/src/index.ts"
       ]
