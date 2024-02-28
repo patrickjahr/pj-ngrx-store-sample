@@ -1,0 +1,21 @@
+{
+  "name": "domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/typescript/domain/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/typescript/domain",
+        "main": "libs/shared/typescript/domain/src/index.ts",
+        "tsConfig": "libs/shared/typescript/domain/tsconfig.lib.json",
+        "assets": ["libs/shared/typescript/domain/*.md"],
+        "generatePackageJson": true,
+        "format": ["cjs"]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:domain"]
+}
