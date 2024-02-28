@@ -2,7 +2,7 @@
   "name": "feature-conferences",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/lets-talk/conferences/feature/src",
-  "prefix": "paddsen-next",
+  "prefix": "lt",
   "tags": [],
   "projectType": "library",
   "targets": {}

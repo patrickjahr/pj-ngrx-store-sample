@@ -1,1 +1,5 @@
-<p>feature-conferences works!</p>
+@for (conference of conferences$ | async; track conference.id) {
+  <p>{{ conference.name }}</p>
+} @empty {
+  <p>No conferences found!</p>
+}

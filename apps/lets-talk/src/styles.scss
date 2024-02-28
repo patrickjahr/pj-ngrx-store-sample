@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /*
+  Primärfarben: Blau (#2196F3), Grün (#4CAF50), Rot (#F44336), Gelb (#FFC107)
+Sekundärfarben: Indigo (#3F51B5), Teal (#009688), Orange (#FF9800), Amber (#FFC107)
+  */
+
+  --primary-color: #2196F3;
+  --primary-color-rgb: rgb(33, 150, 243);
+  --secondary-color: #009688;
+  --error-color: #F44336;
+  --warning-color: #FF9800;
+  --success-color: #4CAF50;
+  --dark-color: #000000;
+  --light-color: #ffffff;
+}
+
+html, body {
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, sans-serif;
+}
