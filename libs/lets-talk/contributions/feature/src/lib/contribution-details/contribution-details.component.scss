@@ -8,6 +8,8 @@ img {
   width: 384px;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  object-fit: cover;
+  view-transition-name: card-image;
 }
 
 form {

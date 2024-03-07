@@ -3,6 +3,7 @@
 } @else {
   @for (contribution of contributions(); track contribution.id) {
     <lt-card [imageUrl]="contribution.imageUrl ?? '../assets/placeholder_2.jpeg'"
+             [class.active]="selected()?.id === contribution.id"
              (click)="selectContribution(contribution.id)">
       <div class="lt-card-title">
         <span>#{{ contribution.id }} {{ contribution.name }}</span>

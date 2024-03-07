@@ -9,6 +9,7 @@ import { MatButton, MatFabButton } from '@angular/material/button';
 import { Speaker } from '@lt/shared/typescript/domain';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'lt-speaker-details',
@@ -24,6 +25,7 @@ import { Router } from '@angular/router';
     MatButton,
     MatFabButton,
     MatIcon,
+    MatRipple,
   ],
   templateUrl: './speaker-details.component.html',
   styleUrl: './speaker-details.component.scss',
@@ -49,7 +51,7 @@ export class SpeakerDetailsComponent {
     if (this.formGroup.valid && updates) {
       this.store.updateSpeaker({ ...speaker, ...updates });
     }
-    await this.router.navigate(['speakers']);
+    await this.goBack();
   }
 
   protected readonly updateForm = effect(() => {
@@ -70,4 +72,8 @@ export class SpeakerDetailsComponent {
       allowSignalWrites: true,
     }
   );
+
+  async goBack(): Promise<void> {
+    await this.router.navigate(['speakers']);
+  }
 }

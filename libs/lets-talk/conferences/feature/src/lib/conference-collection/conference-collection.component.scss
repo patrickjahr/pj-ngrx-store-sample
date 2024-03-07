@@ -9,6 +9,6 @@
   gap: 1rem;
 }
 
-.lt-details {
-  flex: 2;
+lt-card.active {
+  view-transition-name: card-image;
 }

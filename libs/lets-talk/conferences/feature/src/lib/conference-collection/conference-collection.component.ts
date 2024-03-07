@@ -1,10 +1,15 @@
 import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '@lt/shared/angular/ui';
-import { conferencesFeature } from '@lt/lets-talk/conferences/data-access';
+import {
+  conferencesFeature,
+  ConferencesPageActions,
+} from '@lt/lets-talk/conferences/data-access';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ConferenceDetailComponent } from '../conference-detail/conference-detail.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'lt-conference-collection',
@@ -27,7 +32,14 @@ export class ConferenceCollectionComponent {
     conferencesFeature.selectLoadingCollection
   );
 
+  readonly activeId = toSignal(
+    this.store
+      .select(conferencesFeature.selectSelectedConference)
+      .pipe(map((conf) => conf?.id))
+  );
+
   async selectConf(id: string): Promise<void> {
-    await this.router.navigate([`conferences/${id}`]);
+    this.store.dispatch(ConferencesPageActions.selectItem({ id }));
+    setTimeout(() => this.router.navigate([`conferences/${id}`]), 32);
   }
 }

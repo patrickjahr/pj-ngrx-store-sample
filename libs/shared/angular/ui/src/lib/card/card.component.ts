@@ -10,5 +10,4 @@ import { CommonModule } from '@angular/common';
 })
 export class CardComponent {
   imageUrl = input<string>('../assets/placeholder_6.jpeg');
-  selected = input<boolean>(false);
 }

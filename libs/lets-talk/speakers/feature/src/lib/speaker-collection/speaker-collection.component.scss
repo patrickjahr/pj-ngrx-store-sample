@@ -1,9 +1,53 @@
-:host {
+.cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  height: 50%;
+  gap: var(--md-sys-size-8);
 }
 
-lt-card {
-  --lt-card-background-color: #ddf4fc;
+.card {
+  display: block;
+  position: relative;
+  border-radius: 1rem;
+  height: 300px;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--md-sys-motion-duration-medium-2) var(--md-sys-motion-easing-emphasized),
+  filter var(--md-sys-motion-duration-medium-1) var(--md-sys-motion-easing-emphasized);
+
+  &.active {
+    view-transition-name: card-image;
+  }
+
+  &:hover {
+    transform: scale(0.95);
+
+    .image {
+      filter: unset;
+    }
+
+    .overlay {
+      opacity: 0;
+    }
+  }
 }
+
+h2 {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 0.5rem;
+  margin: unset;
+  color: white;
+}
+
+.image {
+  height: 300px;
+  object-fit: cover;
+  filter: blur(3px);
+}
+
+.title {
+  z-index: 100;
+}
+

@@ -1,4 +1,9 @@
 @if (speaker(); as speaker) {
+  <header>
+    <button class="back" matRipple (click)="goBack()">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+    </button>
+  </header>
   <img [src]="speaker.imageUrl ?? '../assets/profile_placeholder_2.jpeg'" alt="" />
   <form [formGroup]="formGroup" (submit)="updateSpeaker()">
     <mat-form-field>

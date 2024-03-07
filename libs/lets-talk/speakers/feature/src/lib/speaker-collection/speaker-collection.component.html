@@ -1,12 +1,13 @@
-@for (speaker of speakers(); track speaker.id; let even = $even) {
-  <lt-card [imageUrl]="speaker.imageUrl ? speaker.imageUrl : '../assets/profile_placeholder_2.jpeg'"
-           [style.--lt-card-background-size]="speaker.imageUrl ? 'cover': 'contain'"
-           (click)="selectSpeaker(speaker.id)">
-    <div class="lt-card-title">#{{ speaker.id }} {{ speaker.name }}</div>
-    <div class="lt-card-footer">
-      <span>{{ speaker.tags }}</span>
+<div class="cards">
+  @for (speaker of speakers(); track speaker.id; let even = $even) {
+    <div class="card" [class.active]="selectedSpeaker()?.id === speaker.id"
+         (click)="selectSpeaker(speaker.id)">
+      <img [src]="speaker.imageUrl ? speaker.imageUrl : '../assets/profile_placeholder_2.jpeg'" class="image" />
+      <h2 class="title">#{{ speaker.id }} {{ speaker.name }}</h2>
+      <h2 class="title">#{{ speaker.id }} {{ speaker.name }}</h2>
+      <h2 class="title">#{{ speaker.id }} {{ speaker.name }}</h2>
     </div>
-  </lt-card>
-} @empty {
-  <p>No speakers found!</p>
-}
+  } @empty {
+    <p>No speakers found!</p>
+  }
+</div>

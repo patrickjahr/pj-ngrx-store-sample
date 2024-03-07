@@ -1,13 +1,25 @@
 :host {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+
+  @media (min-width: 961px) {
+    flex-direction: row;
+  }
 }
 
 img {
-  height: 384px;
-  width: 384px;
-  border-radius: 0.5rem;
+  max-height: 384px;
+  max-width: 384px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: var(--md-sys-size-8);
+  object-fit: cover;
+  view-transition-name: card-image;
+
+  @media (min-width: 961px) {
+    height: 384px;
+    width: 384px;
+  }
 }
 
 form {
@@ -25,4 +37,21 @@ form {
 mat-form-field {
   width: 100%;
   height: min-content;
+}
+
+header {
+  height: var(--md-sys-size-10);
+  padding: var(--md-sys-size-4) var(--md-sys-size-2);
+}
+
+header button {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  border: unset;
+  view-transition-name: card-detail-back;
 }

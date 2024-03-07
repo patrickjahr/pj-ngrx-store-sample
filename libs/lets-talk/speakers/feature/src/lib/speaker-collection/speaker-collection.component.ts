@@ -17,8 +17,10 @@ export class SpeakerCollectionComponent {
   private readonly store = inject(speakerStore);
 
   readonly speakers = this.store.entities;
+  readonly selectedSpeaker = this.store.selected;
 
   async selectSpeaker(id: string): Promise<void> {
-    await this.router.navigate([`speakers/${id}`]);
+    this.store.selectSpeaker(id);
+    setTimeout(() => this.router.navigate([`speakers/${id}`]), 32);
   }
 }

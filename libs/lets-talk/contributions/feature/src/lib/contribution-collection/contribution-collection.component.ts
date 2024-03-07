@@ -18,8 +18,10 @@ export class ContributionCollectionComponent {
 
   readonly isLoading = this.store.isLoading;
   readonly contributions = this.store.contributions;
+  readonly selected = this.store.selected;
 
   async selectContribution(id: string): Promise<void> {
-    await this.router.navigate([`contributions/${id}`]);
+    this.store.loadContribution(id);
+    setTimeout(() => this.router.navigate([`contributions/${id}`]), 32);
   }
 }

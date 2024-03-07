@@ -1,0 +1,27 @@
+/**
+View Transition Name Convention:
+<type>-<object>
+ */
+
+::view-transition-old(card-image),
+::view-transition-new(card-image) {
+  animation: none;
+  // height: 100%;
+}
+
+::view-transition-old(card-image) {
+  display: none;
+}
+
+::view-transition-new(card-image) {
+  object-fit: cover;
+}
+
+::view-transition-new(card-detail-back) {
+  animation: var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-emphasized) var(--md-sys-motion-view-transition-duration) both enter-top;
+}
+
+::view-transition-old(card-detail-back) {
+  animation: var(--md-sys-motion-duration-short) ease-in both enter-top reverse;
+}
+

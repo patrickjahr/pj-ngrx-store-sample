@@ -4,6 +4,7 @@
   <div class="lt-grid">
     @for (conference of conferences(); track conference.id) {
       <lt-card (click)="selectConf(conference.id)"
+               [class.active]="activeId() === conference.id"
                [imageUrl]="conference.imageUrl ?? '../assets/conference_placeholder_2.jpeg'">
         <div class="lt-card-title">
           <p>#{{ conference.id }} {{ conference.name }}</p>
