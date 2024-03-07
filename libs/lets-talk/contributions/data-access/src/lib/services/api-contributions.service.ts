@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { Contribution } from '@lt/shared/typescript/domain';
 
 @Injectable()
@@ -24,6 +24,17 @@ export class ApiContributionsService {
           `Request contribution for if ${id} failed. Error: ${err}`
         );
         return of(undefined);
+      })
+    );
+  }
+
+  updateContribution(id: string, data: Contribution): Observable<void> {
+    return this.http.put<void>(`api/contributions/${id}`, data).pipe(
+      catchError((err) => {
+        console.error(
+          `Request contribution for if ${id} failed. Error: ${err}`
+        );
+        return EMPTY;
       })
     );
   }

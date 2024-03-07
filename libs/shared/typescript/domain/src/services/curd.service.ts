@@ -20,4 +20,13 @@ export class CrudService<T extends BaseEntity> {
 
     return item;
   }
+
+  updateItem(itemId: string, data: T) {
+    const collection = [...this.data$$.value];
+    const index = collection.findIndex(({ id }) => id === itemId);
+    if (index > -1) {
+      collection[index] = { ...data, id: itemId };
+    }
+    this.data$$.next([...collection]);
+  }
 }

@@ -64,13 +64,20 @@ export class ConferenceEffects implements OnInitEffects {
   updateConference$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ConferencesPageActions.updateConference),
-      exhaustMap(({ conference }) => {
-        // TODO: Make Api Call
-        console.log('Effect is called');
-        return of(
-          ConferencesApiActions.conferenceUpdatedSuccess({ conference })
-        );
-      })
+      exhaustMap(({ conference }) =>
+        this.conferenceService.updateConference(conference.id, conference).pipe(
+          map(() =>
+            ConferencesApiActions.conferenceUpdatedSuccess({ conference })
+          ),
+          catchError((err) =>
+            of(
+              ConferencesApiActions.conferenceUpdatedFailure({
+                errorMsg: err.message,
+              })
+            )
+          )
+        )
+      )
     )
   );
 }

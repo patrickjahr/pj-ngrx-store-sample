@@ -63,14 +63,21 @@ export class ContributionsStore
   updateContribution = this.effect((data$: Observable<Contribution>) =>
     data$.pipe(
       withLatestFrom(this.select((state) => state.contributions)),
-      tap(([contribution, contributions]) => {
-        const existingContribution = contributions.findIndex(
-          (c) => c.id === contribution.id
-        );
-        if (existingContribution > -1) {
-          contributions[existingContribution] = contribution;
-          this.patchState({ contributions });
-        }
+      switchMap(([contribution, contributions]) => {
+        return this.contributionsService
+          .updateContribution(contribution.id, contribution)
+          .pipe(
+            tap(() => {
+              const existingContribution = contributions.findIndex(
+                (c) => c.id === contribution.id
+              );
+              if (existingContribution > -1) {
+                contributions[existingContribution] = contribution;
+                this.patchState({ contributions });
+              }
+            }),
+            catchError(() => EMPTY)
+          );
       })
     )
   );

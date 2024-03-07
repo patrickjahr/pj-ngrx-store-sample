@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { Conference } from '@lt/shared/typescript/domain';
 
 @Injectable()
@@ -21,6 +21,15 @@ export class ApiConferencesService {
       catchError((err) => {
         console.error(`Request conference for if ${id} failed. Error: ${err}`);
         return of(undefined);
+      })
+    );
+  }
+
+  updateConference(id: string, data: Conference): Observable<void> {
+    return this.http.put<void>(`api/conferences/${id}`, data).pipe(
+      catchError((err) => {
+        console.error(`Request conference for if ${id} failed. Error: ${err}`);
+        return EMPTY;
       })
     );
   }

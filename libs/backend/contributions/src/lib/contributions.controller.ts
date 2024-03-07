@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { ContributionsService } from './contributions.service';
 import { Contribution } from '@lt/shared/typescript/domain';
 
@@ -14,5 +14,13 @@ export class ContributionsController {
   @Get(':id')
   getConference(@Param('id') id: string): Contribution {
     return this.contributionsService.getItem(id);
+  }
+
+  @Put(':id')
+  updateContribution(
+    @Param('id') id: string,
+    @Body() contribution: Contribution
+  ): void {
+    this.contributionsService.updateItem(id, contribution);
   }
 }

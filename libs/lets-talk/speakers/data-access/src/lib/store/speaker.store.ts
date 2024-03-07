@@ -9,13 +9,23 @@ import {
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { inject } from '@angular/core';
 import { ApiSpeakersService } from '../services/api-speakers.service';
-import { catchError, EMPTY, finalize, pipe, switchMap, tap } from 'rxjs';
+import {
+  catchError,
+  concatMap,
+  EMPTY,
+  finalize,
+  map,
+  pipe,
+  switchMap,
+  tap,
+} from 'rxjs';
 import {
   addEntities,
   updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
 import { withLogger } from '@lt/shared/angular/ui';
+import { tapResponse } from '@ngrx/component-store';
 
 export interface SpeakerState {
   selected: Speaker | undefined;
@@ -44,18 +54,31 @@ export const speakerStore = signalStore(
       )
     ),
 
-    updateSpeaker(speaker: Speaker): void {
-      patchState(
-        store,
-        updateEntity({
-          id: speaker.id,
-          changes: {
-            ...speaker,
-            name: `${speaker.firstName} ${speaker.lastName}`,
-          },
+    updateSpeaker: rxMethod<Speaker>(
+      pipe(
+        map((speaker) => ({
+          ...speaker,
+          name: `${speaker.firstName} ${speaker.lastName}`,
+        })),
+        concatMap((speaker) => {
+          return apiService.updateSpeaker(speaker.id, speaker).pipe(
+            tapResponse({
+              next: () =>
+                patchState(
+                  store,
+                  updateEntity({
+                    id: speaker.id,
+                    changes: {
+                      ...speaker,
+                    },
+                  })
+                ),
+              error: console.error,
+            })
+          );
         })
-      );
-    },
+      )
+    ),
 
     selectSpeaker: rxMethod<string>(
       pipe(

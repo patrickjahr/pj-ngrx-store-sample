@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 import { Speaker } from '@lt/shared/typescript/domain';
 
 @Injectable()
@@ -21,7 +21,16 @@ export class ApiSpeakersService {
     return this.http.get<Speaker>(`api/speakers/${id}`).pipe(
       catchError((err) => {
         console.error(`Request speaker for if ${id} failed. Error: ${err}`);
-        return of(undefined);
+        return EMPTY;
+      })
+    );
+  }
+
+  updateSpeaker(id: string, data: Speaker): Observable<void> {
+    return this.http.put<void>(`api/speakers/${id}`, data).pipe(
+      catchError((err) => {
+        console.error(`Request speaker for if ${id} failed. Error: ${err}`);
+        return EMPTY;
       })
     );
   }

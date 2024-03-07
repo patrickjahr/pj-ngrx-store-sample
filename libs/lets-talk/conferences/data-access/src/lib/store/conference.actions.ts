@@ -18,5 +18,6 @@ export const ConferencesApiActions = createActionGroup({
     'Conference loaded success': props<{ conference: Conference }>(),
     'Conference loaded failure': props<{ errorMsg: string }>(),
     'Conference updated success': props<{ conference: Conference }>(),
+    'Conference updated failure': props<{ errorMsg: string }>(),
   },
 });
