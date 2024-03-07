@@ -1,0 +1,12 @@
+@for (speaker of speakers(); track speaker.id; let even = $even) {
+  <lt-card [imageUrl]="speaker.imageUrl ? speaker.imageUrl : '../assets/profile_placeholder_2.jpeg'"
+           [style.--lt-card-background-size]="speaker.imageUrl ? 'cover': 'contain'"
+           (click)="selectSpeaker(speaker.id)">
+    <div class="lt-card-title">#{{ speaker.id }} {{ speaker.name }}</div>
+    <div class="lt-card-footer">
+      <span>{{ speaker.tags }}</span>
+    </div>
+  </lt-card>
+} @empty {
+  <p>No speakers found!</p>
+}

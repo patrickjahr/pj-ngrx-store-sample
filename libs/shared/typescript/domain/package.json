@@ -1,7 +1,9 @@
 {
   "name": "@lt/shared/typescript/domain",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "rxjs": "^7.8.0"
+  },
   "type": "commonjs",
   "main": "./index.cjs"
 }

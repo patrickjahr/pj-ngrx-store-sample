@@ -12,16 +12,48 @@
 Sekundärfarben: Indigo (#3F51B5), Teal (#009688), Orange (#FF9800), Amber (#FFC107)
   */
 
-  --primary-color: #2196F3;
-  --primary-color-rgb: rgb(33, 150, 243);
-  --secondary-color: #009688;
-  --error-color: #F44336;
-  --warning-color: #FF9800;
+  --primary-color: #D90452;
+  --primary-color-hsl: hsl(338, 96%, 43%);
+  --primary-color-rgb: 217, 4, 82;
+  --secondary-color: #591D3E;
+  --secondary-color-hsl: hsl(327, 51%, 23%);
+  --secondary-color-rgb: 89, 29, 62;
+  --error-color: #F21616;
+  --warning-color: #F25D07;
   --success-color: #4CAF50;
-  --dark-color: #000000;
-  --light-color: #ffffff;
+  --dark-color: #1A2126;
+  --dark-color-rgb: 26, 33, 38;
+  --light-color: #F2F2F2;
+  --white-color: #FFFFFF;
+  --white-color-rgb: 255, 255, 255;
+  --light-color-rgb: 242, 242, 242;
 }
 
 html, body {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, sans-serif;
+  background: var(--light-color);
+  background: linear-gradient(
+      to bottom,
+      rgba(var(--dark-color-rgb), .6) 0%,
+      rgba(var(--dark-color-rgb), .6) 20%,
+      var(--light-color) 20%,
+      var(--light-color) 100%
+  );
 }
+
+/*VIEW TRANSTIONS ANIMATIONS*/
+::view-transition-image-pair(*) {
+  /*= Styles for every instance =*/
+  position: absolute;
+  inset: 0px;
+
+  /*= Styles generated per instance =*/
+  /* Set if there's an old and new image, to aid with cross-fading.
+     This is done conditionally as isolation has a performance cost. */
+  isolation: isolate;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

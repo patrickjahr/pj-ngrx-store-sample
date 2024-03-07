@@ -1,0 +1,32 @@
+@if (conference(); as conf) {
+  <img class="lt-conf-img" [src]="conf.imageUrl ?? '../assets/conference_placeholder_3.jpeg'" alt="" />
+  <form [formGroup]="formGroup" (submit)="updateConference()">
+    <mat-form-field>
+      <mat-label>Title:</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Start date</mat-label>
+      <input formControlName="startDate" matInput [matDatepicker]="start">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
+      <mat-datepicker #start></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>End date</mat-label>
+      <input formControlName="endDate" matInput [matDatepicker]="end">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
+      <mat-datepicker #end></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Location:</mat-label>
+      <input matInput formControlName="location">
+    </mat-form-field>
+    <button mat-fab color="primary" type="submit">
+      <mat-icon>save</mat-icon>
+    </button>
+  </form>
+} @else {
+  <p>Conference was not found</p>
+}

@@ -1,0 +1,22 @@
+@if (isLoading()) {
+  <p>Loading data...</p>
+} @else {
+  @for (contribution of contributions(); track contribution.id) {
+    <lt-card [imageUrl]="contribution.imageUrl ?? '../assets/placeholder_2.jpeg'"
+             (click)="selectContribution(contribution.id)">
+      <div class="lt-card-title">
+        <span>#{{ contribution.id }} {{ contribution.name }}</span>
+      </div>
+      <div class="lt-card-content">
+        <p>Start: {{ contribution.startDate | date: 'dd.MMM.yyyy' }} ||
+          Ende: {{ contribution.endDate | date: 'dd.MMM.yyyy' }}</p>
+      </div>
+      <div class="lt-card-footer">
+        <span>{{ contribution.type }}</span>
+      </div>
+    </lt-card>
+  } @empty {
+    <p>No contributions found!</p>
+  }
+}
+

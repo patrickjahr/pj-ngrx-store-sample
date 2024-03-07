@@ -1,0 +1,10 @@
+<img class="lt-card-image" [src]="imageUrl()" [class.lt-selected]="selected()" alt="" />
+<div class="lt-card-title">
+  <ng-content select=".lt-card-title"></ng-content>
+</div>
+<div class="lt-card-content">
+  <ng-content select=".lt-card-content"></ng-content>
+</div>
+<div class="lt-card-footer">
+  <ng-content select=".lt-card-footer"></ng-content>
+</div>

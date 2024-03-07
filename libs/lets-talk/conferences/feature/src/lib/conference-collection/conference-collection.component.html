@@ -1,0 +1,23 @@
+@if (isLoading()) {
+  <p>Loading conference collection...</p>
+} @else {
+  <div class="lt-grid">
+    @for (conference of conferences(); track conference.id) {
+      <lt-card (click)="selectConf(conference.id)"
+               [imageUrl]="conference.imageUrl ?? '../assets/conference_placeholder_2.jpeg'">
+        <div class="lt-card-title">
+          <p>#{{ conference.id }} {{ conference.name }}</p>
+        </div>
+        <div class="lt-card-content">
+          <p>Start: {{ conference.startDate | date: 'dd.MMM.yyyy' }} ||
+            Ende: {{ conference.endDate | date: 'dd.MMM.yyyy' }}</p>
+        </div>
+        <div class="lt-card-footer">
+          <span>Konferenz in {{ conference.location }}</span>
+        </div>
+      </lt-card>
+    } @empty {
+      <p>No conferences found!</p>
+    }
+  </div>
+}

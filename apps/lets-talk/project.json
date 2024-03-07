@@ -4,23 +4,38 @@
   "projectType": "application",
   "prefix": "lt",
   "sourceRoot": "apps/lets-talk/src",
-  "tags": ["type:app", "scope:lets-talk"],
+  "tags": [
+    "type:app",
+    "scope:lets-talk"
+  ],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/lets-talk",
         "index": "apps/lets-talk/src/index.html",
         "browser": "apps/lets-talk/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/lets-talk/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/lets-talk/src/favicon.ico",
-          "apps/lets-talk/src/assets"
+          "apps/lets-talk/src/assets",
+          {
+            "input": "libs/shared/angular/ui/src/lib/assets",
+            "glob": "**.*",
+            "output": "assets"
+          }
         ],
-        "styles": ["apps/lets-talk/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/pink-bluegrey.css",
+          "apps/lets-talk/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {

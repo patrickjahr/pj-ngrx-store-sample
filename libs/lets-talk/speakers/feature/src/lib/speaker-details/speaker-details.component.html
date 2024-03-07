@@ -1,0 +1,27 @@
+@if (speaker(); as speaker) {
+  <img [src]="speaker.imageUrl ?? '../assets/profile_placeholder_2.jpeg'" alt="" />
+  <form [formGroup]="formGroup" (submit)="updateSpeaker()">
+    <mat-form-field>
+      <mat-label>First name:</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name:</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tags:</mat-label>
+      <input matInput formControlName="tags">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="birthDate" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-fab color="primary" type="submit">
+      <mat-icon>save</mat-icon>
+    </button>
+  </form>
+}

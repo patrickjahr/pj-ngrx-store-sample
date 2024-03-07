@@ -1,1 +1,2 @@
-export * from './lib/speakers-data-access/speakers-data-access.component';
+export * from './lib/services/api-speakers.service';
+export * from './lib/store/speaker.store';

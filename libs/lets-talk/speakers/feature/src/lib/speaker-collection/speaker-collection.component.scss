@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+lt-card {
+  --lt-card-background-color: #ddf4fc;
+}

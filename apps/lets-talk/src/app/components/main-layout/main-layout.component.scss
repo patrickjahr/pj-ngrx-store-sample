@@ -11,7 +11,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  box-shadow: 0 10px 10px -3px rgba(33, 150, 243, 0.2);
 
   .lt-content {
     display: flex;
@@ -31,16 +30,16 @@
       a {
         font-size: 1.5rem;
         text-decoration: none;
-        color: var(--dark-color);
+        color: var(--light-color);
 
         @media (hover) {
-          &:hover {
+          &:hover:not(.active) {
             text-decoration: underline;
           }
         }
 
         &.active {
-          color: var(--primary-color);
+          color: rgba(var(--light-color-rgb), .6);
         }
       }
     }
@@ -50,13 +49,20 @@
 .lt-content {
   width: 70vw;
 
-  @media (max-width: 1079px) {
-    width: 100%;
-  }
-
   &.main {
     flex: 1;
     padding: 1.5rem 0;
+    overflow: auto;
+    scroll-padding: 2rem;
+  }
+
+  @media (max-width: 1079px) {
+    width: 100%;
+    padding: 0 2rem;
+
+    &.main {
+      padding: 2rem;
+    }
   }
 }
 
@@ -65,7 +71,7 @@
   justify-content: center;
   height: 80px;
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--dark-color);
   color: var(--light-color);
 
   .lt-content {

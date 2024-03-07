@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-speakers',
+  displayName: 'speaker-collection',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../../coverage/libs/lets-talk/speakers/feature',

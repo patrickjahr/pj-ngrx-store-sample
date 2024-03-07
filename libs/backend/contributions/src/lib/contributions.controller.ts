@@ -1,17 +1,18 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ContributionsService } from './contributions.service';
+import { Contribution } from '@lt/shared/typescript/domain';
 
 @Controller('contributions')
 export class ContributionsController {
   constructor(private contributionsService: ContributionsService) {}
 
   @Get('')
-  getConferences() {
+  getConferences(): Contribution[] {
     return this.contributionsService.getAll();
   }
 
   @Get(':id')
-  getConference(@Param() id: string) {
+  getConference(@Param('id') id: string): Contribution {
     return this.contributionsService.getItem(id);
   }
 }

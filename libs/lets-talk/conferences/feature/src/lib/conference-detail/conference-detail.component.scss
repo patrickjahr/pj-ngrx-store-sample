@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  gap: 1rem;
+}
+
+img {
+  height: 384px;
+  width: 384px;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  button {
+    align-self: flex-end;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+  height: min-content;
+}

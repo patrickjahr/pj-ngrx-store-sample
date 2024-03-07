@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+}
+
+.lt-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.lt-details {
+  flex: 2;
+}

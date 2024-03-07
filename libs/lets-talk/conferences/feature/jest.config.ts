@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-conferences',
+  displayName: 'conference-collection',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../../coverage/libs/lets-talk/conferences/feature',
