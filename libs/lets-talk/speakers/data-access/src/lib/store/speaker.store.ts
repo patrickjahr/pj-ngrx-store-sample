@@ -15,6 +15,7 @@ import {
   updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
+import { withLogger } from '@lt/shared/angular/ui';
 
 export interface SpeakerState {
   selected: Speaker | undefined;
@@ -29,6 +30,7 @@ export const initialState: SpeakerState = {
 export const speakerStore = signalStore(
   withState(initialState),
   withEntities<Speaker>(),
+  withLogger('speaker'),
   withMethods((store, apiService = inject(ApiSpeakersService)) => ({
     loadSpeakers: rxMethod<void>(
       pipe(
