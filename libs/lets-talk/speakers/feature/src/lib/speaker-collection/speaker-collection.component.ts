@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { CardComponent } from '@lt/shared/angular/ui';
+import { CardComponent, scaleDeleteAnimation } from '@lt/shared/angular/ui';
 import { speakerStore } from '@lt/lets-talk/speakers/data-access';
 import { Router } from '@angular/router';
+import { transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'lt-speaker-collection',
@@ -11,6 +12,9 @@ import { Router } from '@angular/router';
   imports: [CommonModule, HttpClientModule, CardComponent],
   templateUrl: './speaker-collection.component.html',
   styleUrl: './speaker-collection.component.scss',
+  animations: [
+    trigger('card', [transition(':leave', [scaleDeleteAnimation()])]),
+  ],
 })
 export class SpeakerCollectionComponent {
   private readonly router = inject(Router);

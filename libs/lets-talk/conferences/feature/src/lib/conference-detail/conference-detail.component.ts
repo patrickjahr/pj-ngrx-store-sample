@@ -90,6 +90,6 @@ export class ConferenceDetailComponent {
   }
 
   async goBack(): Promise<void> {
-    await this.router.navigate(['contributions']);
+    await this.router.navigate(['conferences']);
   }
 }

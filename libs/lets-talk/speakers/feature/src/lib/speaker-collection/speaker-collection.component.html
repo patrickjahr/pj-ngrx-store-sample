@@ -1,6 +1,6 @@
 <div class="cards">
   @for (speaker of speakers(); track speaker.id; let even = $even) {
-    <div class="card" [class.active]="selectedSpeaker()?.id === speaker.id"
+    <div @card class="card" [class.active]="selectedSpeaker()?.id === speaker.id"
          (click)="selectSpeaker(speaker.id)">
       <img [src]="speaker.imageUrl ? speaker.imageUrl : '../assets/profile_placeholder_2.jpeg'" class="image" />
       <h2 class="title">#{{ speaker.id }} {{ speaker.name }}</h2>
