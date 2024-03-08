@@ -1,10 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { SpeakersService } from './speakers.service';
 import { Speaker } from '@lt/shared/typescript/domain';
+import { SpeakersGateway } from './speakers.gateway';
 
 @Controller('speakers')
 export class SpeakersController {
-  constructor(private speakersService: SpeakersService) {}
+  constructor(
+    private speakersService: SpeakersService,
+    private speakersGateway: SpeakersGateway
+  ) {}
 
   @Get('')
   getConferences(): Speaker[] {
@@ -24,5 +28,6 @@ export class SpeakersController {
   @Delete(':id')
   deleteSpeaker(@Param('id') id: string): void {
     this.speakersService.deleteItem(id);
+    this.speakersGateway.server.emit('speakerDeleted', id);
   }
 }

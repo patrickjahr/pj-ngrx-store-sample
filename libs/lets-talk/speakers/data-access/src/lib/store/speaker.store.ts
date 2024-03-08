@@ -27,6 +27,7 @@ import {
 } from '@ngrx/signals/entities';
 import { withLogger } from '@lt/shared/angular/ui';
 import { tapResponse } from '@ngrx/component-store';
+import { Socket } from 'ngx-socket-io';
 
 export interface SpeakerState {
   selected: Speaker | undefined;
@@ -108,8 +109,15 @@ export const speakerStore = signalStore(
     ),
   })),
   withHooks({
-    onInit(store) {
+    onInit(store, socket = inject(Socket)) {
+      socket.on('speakerDeleted', (id: string) => {
+        console.log('Speaker deleted message from socket');
+        patchState(store, removeEntity(id));
+      });
       store.loadSpeakers();
+    },
+    onDestroy(store, socket = inject(Socket)) {
+      socket.off('speakerDeleted');
     },
   })
 );

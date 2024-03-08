@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -10,7 +10,9 @@ import { provideStore } from '@ngrx/store';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
@@ -23,5 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
+    importProvidersFrom(SocketIoModule.forRoot(config)),
   ],
 };
