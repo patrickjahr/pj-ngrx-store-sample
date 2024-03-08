@@ -2,6 +2,7 @@ import { Component, effect, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import {
+  ConferencesApiActions,
   conferencesFeature,
   ConferencesPageActions,
 } from '@lt/lets-talk/conferences/data-access';
@@ -13,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Contribution } from '@lt/shared/typescript/domain';
 import { Router } from '@angular/router';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'lt-conference-detail',
@@ -25,6 +27,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIcon,
     MatInput,
+    MatRipple,
   ],
   templateUrl: './conference-detail.component.html',
   styleUrl: './conference-detail.component.scss',
@@ -71,11 +74,22 @@ export class ConferenceDetailComponent {
     const updates = this.formGroup.value as Contribution;
     if (this.formGroup.valid && updates) {
       this.store.dispatch(
-        ConferencesPageActions.updateConference({
+        ConferencesApiActions.updateConference({
           conference: { ...contribution, ...updates },
         })
       );
     }
-    await this.router.navigate(['conferences']);
+    await this.goBack();
+  }
+
+  async delete(): Promise<void> {
+    this.store.dispatch(
+      ConferencesApiActions.deleteConference({ id: this.id() })
+    );
+    await this.goBack();
+  }
+
+  async goBack(): Promise<void> {
+    await this.router.navigate(['contributions']);
   }
 }

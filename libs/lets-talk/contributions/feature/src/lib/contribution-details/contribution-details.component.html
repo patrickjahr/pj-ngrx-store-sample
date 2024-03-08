@@ -1,4 +1,9 @@
 @if (contribution(); as contribution) {
+  <header>
+    <button class="back" matRipple (click)="goBack()">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+    </button>
+  </header>
   <img [src]="contribution.imageUrl ?? '../assets/placeholder_2.jpeg'" alt="" />
   <form [formGroup]="formGroup" (submit)="updateContribution()">
     <mat-form-field>
@@ -23,8 +28,13 @@
       <mat-label>Type:</mat-label>
       <input matInput formControlName="type">
     </mat-form-field>
-    <button mat-fab color="primary" type="submit">
-      <mat-icon>save</mat-icon>
-    </button>
+    <div class="actions">
+      <button mat-fab color="secondary" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
   </form>
 }

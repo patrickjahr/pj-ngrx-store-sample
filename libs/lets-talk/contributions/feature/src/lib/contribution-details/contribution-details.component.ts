@@ -9,6 +9,7 @@ import { Contribution, ContributionsType } from '@lt/shared/typescript/domain';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'lt-contribution-details',
@@ -21,6 +22,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIcon,
     MatInput,
+    MatRipple,
   ],
   templateUrl: './contribution-details.component.html',
   styleUrl: './contribution-details.component.scss',
@@ -30,7 +32,7 @@ export class ContributionDetailsComponent {
   private readonly store = inject(ContributionsStore);
   private readonly fbBuilder = inject(FormBuilder);
 
-  readonly id = input<string | undefined>(undefined);
+  readonly id = input.required<string>();
 
   readonly contribution = this.store.selected;
   readonly formGroup = this.fbBuilder.group({
@@ -68,6 +70,15 @@ export class ContributionDetailsComponent {
     if (this.formGroup.valid && updates) {
       this.store.updateContribution({ ...contribution, ...updates });
     }
+    await this.goBack();
+  }
+
+  async delete(): Promise<void> {
+    this.store.deleteContribution(this.id());
+    await this.goBack();
+  }
+
+  async goBack(): Promise<void> {
     await this.router.navigate(['contributions']);
   }
 }

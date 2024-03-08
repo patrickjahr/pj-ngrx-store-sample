@@ -38,4 +38,15 @@ export class ApiContributionsService {
       })
     );
   }
+
+  deleteContribution(id: string): Observable<void> {
+    return this.http.delete<void>(`api/contributions/${id}`).pipe(
+      catchError((err) => {
+        console.error(
+          `Delete contribution with if ${id} failed. Error: ${err}`
+        );
+        return EMPTY;
+      })
+    );
+  }
 }

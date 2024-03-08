@@ -28,7 +28,16 @@ export class ApiConferencesService {
   updateConference(id: string, data: Conference): Observable<void> {
     return this.http.put<void>(`api/conferences/${id}`, data).pipe(
       catchError((err) => {
-        console.error(`Request conference for if ${id} failed. Error: ${err}`);
+        console.error(`Update conference with if ${id} failed. Error: ${err}`);
+        return EMPTY;
+      })
+    );
+  }
+
+  deleteConference(id: string): Observable<void> {
+    return this.http.delete<void>(`api/conferences/${id}`).pipe(
+      catchError((err) => {
+        console.error(`Delete conference with if ${id} failed. Error: ${err}`);
         return EMPTY;
       })
     );

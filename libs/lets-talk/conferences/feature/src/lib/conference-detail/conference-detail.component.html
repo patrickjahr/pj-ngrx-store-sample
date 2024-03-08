@@ -1,4 +1,9 @@
 @if (conference(); as conf) {
+  <header>
+    <button class="back" matRipple (click)="goBack()">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+    </button>
+  </header>
   <img class="lt-conf-img" [src]="conf.imageUrl ?? '../assets/conference_placeholder_3.jpeg'" alt="" />
   <form [formGroup]="formGroup" (submit)="updateConference()">
     <mat-form-field>
@@ -23,9 +28,14 @@
       <mat-label>Location:</mat-label>
       <input matInput formControlName="location">
     </mat-form-field>
-    <button mat-fab color="primary" type="submit">
-      <mat-icon>save</mat-icon>
-    </button>
+    <div class="actions">
+      <button mat-fab color="secondary" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
   </form>
 } @else {
   <p>Conference was not found</p>

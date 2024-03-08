@@ -45,15 +45,6 @@ export class SpeakerDetailsComponent {
     birthDate: ['', new Date()],
   });
 
-  async updateSpeaker(): Promise<void> {
-    const speaker = this.speaker();
-    const updates = this.formGroup.value as Speaker;
-    if (this.formGroup.valid && updates) {
-      this.store.updateSpeaker({ ...speaker, ...updates });
-    }
-    await this.goBack();
-  }
-
   protected readonly updateForm = effect(() => {
     const speaker = this.speaker();
     if (speaker) {
@@ -72,6 +63,20 @@ export class SpeakerDetailsComponent {
       allowSignalWrites: true,
     }
   );
+
+  async updateSpeaker(): Promise<void> {
+    const speaker = this.speaker();
+    const updates = this.formGroup.value as Speaker;
+    if (this.formGroup.valid && updates) {
+      this.store.updateSpeaker({ ...speaker, ...updates });
+    }
+    await this.goBack();
+  }
+
+  async delete(): Promise<void> {
+    this.store.deleteSpeaker(this.id);
+    await this.goBack();
+  }
 
   async goBack(): Promise<void> {
     await this.router.navigate(['speakers']);

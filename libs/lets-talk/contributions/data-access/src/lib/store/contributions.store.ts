@@ -1,16 +1,9 @@
 import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
 import { Contribution } from '@lt/shared/typescript/domain';
-import {
-  catchError,
-  EMPTY,
-  finalize,
-  Observable,
-  switchMap,
-  tap,
-  withLatestFrom,
-} from 'rxjs';
+import { catchError, EMPTY, finalize, Observable, switchMap, tap } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { ApiContributionsService } from '../services/api-contributions.service';
+import { concatLatestFrom } from '@ngrx/effects';
 
 export interface ContributionState {
   isLoading: boolean;
@@ -62,12 +55,12 @@ export class ContributionsStore
 
   updateContribution = this.effect((data$: Observable<Contribution>) =>
     data$.pipe(
-      withLatestFrom(this.select((state) => state.contributions)),
-      switchMap(([contribution, contributions]) => {
-        return this.contributionsService
+      switchMap((contribution) =>
+        this.contributionsService
           .updateContribution(contribution.id, contribution)
           .pipe(
-            tap(() => {
+            concatLatestFrom(() => this.select((state) => state.contributions)),
+            tap(([, contributions]) => {
               const existingContribution = contributions.findIndex(
                 (c) => c.id === contribution.id
               );
@@ -77,8 +70,24 @@ export class ContributionsStore
               }
             }),
             catchError(() => EMPTY)
-          );
-      })
+          )
+      )
+    )
+  );
+
+  deleteContribution = this.effect((data$: Observable<string>) =>
+    data$.pipe(
+      switchMap((id) =>
+        this.contributionsService.deleteContribution(id).pipe(
+          concatLatestFrom(() => this.select((state) => state.contributions)),
+          tap(([, contributions]) => {
+            this.patchState({
+              contributions: contributions.filter((c) => c.id !== id),
+            });
+          }),
+          catchError(() => EMPTY)
+        )
+      )
     )
   );
 

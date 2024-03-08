@@ -29,7 +29,7 @@ export class ConferenceCollectionComponent {
   );
 
   readonly isLoading = this.store.selectSignal(
-    conferencesFeature.selectLoadingCollection
+    conferencesFeature.selectLoading
   );
 
   readonly activeId = toSignal(

@@ -25,8 +25,13 @@
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-fab color="primary" type="submit">
-      <mat-icon>save</mat-icon>
-    </button>
+    <div class="actions">
+      <button mat-fab color="secondary" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
   </form>
 }

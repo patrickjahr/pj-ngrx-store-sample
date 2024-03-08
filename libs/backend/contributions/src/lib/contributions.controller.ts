@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { ContributionsService } from './contributions.service';
 import { Contribution } from '@lt/shared/typescript/domain';
 
@@ -22,5 +22,10 @@ export class ContributionsController {
     @Body() contribution: Contribution
   ): void {
     this.contributionsService.updateItem(id, contribution);
+  }
+
+  @Delete(':id')
+  deleteContribution(@Param('id') id: string): void {
+    this.contributionsService.deleteItem(id);
   }
 }

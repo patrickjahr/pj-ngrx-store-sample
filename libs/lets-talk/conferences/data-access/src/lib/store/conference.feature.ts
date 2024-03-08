@@ -8,14 +8,14 @@ import {
 interface State {
   conferences: Conference[];
   selectedConference: Conference | null;
-  loadingCollection: boolean;
+  loading: boolean;
   error: string | null;
 }
 
 const initialState: State = {
   conferences: [],
   selectedConference: null,
-  loadingCollection: false,
+  loading: false,
   error: null,
 };
 
@@ -58,14 +58,16 @@ export const conferencesFeature = createFeature({
         return { ...state, conferences: collection };
       }
     ),
-    on(
-      ConferencesApiActions.conferenceLoadedFailure,
-      (state, { errorMsg }) => ({
+    on(ConferencesApiActions.conferenceDeletedSuccess, (state, { id }) => {
+      return {
         ...state,
-        selectedConference: null,
-        error: errorMsg,
-        loadingCollection: false,
-      })
-    )
+        conferences: state.conferences.filter((c) => c.id !== id),
+      };
+    }),
+    on(ConferencesApiActions.apiCallFailure, (state, { errorMsg }) => ({
+      ...state,
+      error: errorMsg,
+      loadingCollection: false,
+    }))
   ),
 });

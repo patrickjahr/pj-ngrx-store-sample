@@ -21,6 +21,7 @@ import {
 } from 'rxjs';
 import {
   addEntities,
+  removeEntity,
   updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
@@ -68,11 +69,22 @@ export const speakerStore = signalStore(
                   store,
                   updateEntity({
                     id: speaker.id,
-                    changes: {
-                      ...speaker,
-                    },
+                    changes: { ...speaker },
                   })
                 ),
+              error: console.error,
+            })
+          );
+        })
+      )
+    ),
+
+    deleteSpeaker: rxMethod<string>(
+      pipe(
+        concatMap((id) => {
+          return apiService.deleteSpeaker(id).pipe(
+            tapResponse({
+              next: () => patchState(store, removeEntity(id)),
               error: console.error,
             })
           );

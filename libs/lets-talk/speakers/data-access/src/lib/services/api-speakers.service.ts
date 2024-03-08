@@ -34,4 +34,13 @@ export class ApiSpeakersService {
       })
     );
   }
+
+  deleteSpeaker(id: string): Observable<void> {
+    return this.http.delete<void>(`api/speakers/${id}`).pipe(
+      catchError((err) => {
+        console.error(`Delete speaker with if ${id} failed. Error: ${err}`);
+        return EMPTY;
+      })
+    );
+  }
 }

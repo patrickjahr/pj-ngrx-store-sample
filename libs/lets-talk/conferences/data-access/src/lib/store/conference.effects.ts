@@ -27,8 +27,8 @@ export class ConferenceEffects implements OnInitEffects {
           ),
           catchError((err) =>
             of(
-              ConferencesApiActions.conferencesLoadedFailure({
-                errorMsg: `Error: ${err.message}`,
+              ConferencesApiActions.apiCallFailure({
+                errorMsg: `Failed to load conferences. Error: ${err.message}`,
               })
             )
           )
@@ -45,14 +45,14 @@ export class ConferenceEffects implements OnInitEffects {
           map((conference) =>
             conference
               ? ConferencesApiActions.conferenceLoadedSuccess({ conference })
-              : ConferencesApiActions.conferenceLoadedFailure({
+              : ConferencesApiActions.apiCallFailure({
                   errorMsg: `Conference not found for id ${id}`,
                 })
           ),
           catchError((err) =>
             of(
-              ConferencesApiActions.conferenceLoadedFailure({
-                errorMsg: `Error: ${err.message}`,
+              ConferencesApiActions.apiCallFailure({
+                errorMsg: `Load Conference for id failed ${id}Error: ${err.message}`,
               })
             )
           )
@@ -63,7 +63,7 @@ export class ConferenceEffects implements OnInitEffects {
 
   updateConference$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ConferencesPageActions.updateConference),
+      ofType(ConferencesApiActions.updateConference),
       exhaustMap(({ conference }) =>
         this.conferenceService.updateConference(conference.id, conference).pipe(
           map(() =>
@@ -71,8 +71,26 @@ export class ConferenceEffects implements OnInitEffects {
           ),
           catchError((err) =>
             of(
-              ConferencesApiActions.conferenceUpdatedFailure({
-                errorMsg: err.message,
+              ConferencesApiActions.apiCallFailure({
+                errorMsg: `Update conference failed. Error: ${err.message}`,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  deleteConference$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ConferencesApiActions.deleteConference),
+      exhaustMap(({ id }) =>
+        this.conferenceService.deleteConference(id).pipe(
+          map(() => ConferencesApiActions.conferenceDeletedSuccess({ id })),
+          catchError((err) =>
+            of(
+              ConferencesApiActions.apiCallFailure({
+                errorMsg: `Update conference failed. Error: ${err.message}`,
               })
             )
           )

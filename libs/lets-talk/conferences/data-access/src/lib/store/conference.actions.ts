@@ -6,18 +6,18 @@ export const ConferencesPageActions = createActionGroup({
   events: {
     Opened: emptyProps(),
     SelectItem: props<{ id: string }>(),
-    UpdateConference: props<{ conference: Conference }>(),
   },
 });
 
 export const ConferencesApiActions = createActionGroup({
   source: 'Conferences API',
   events: {
+    'Update conference': props<{ conference: Conference }>(),
+    'Delete conference': props<{ id: string }>(),
     'Conferences loaded success': props<{ conferences: Conference[] }>(),
-    'Conferences loaded failure': props<{ errorMsg: string }>(),
     'Conference loaded success': props<{ conference: Conference }>(),
-    'Conference loaded failure': props<{ errorMsg: string }>(),
     'Conference updated success': props<{ conference: Conference }>(),
-    'Conference updated failure': props<{ errorMsg: string }>(),
+    'Conference deleted success': props<{ id: string }>(),
+    'Api Call failure': props<{ errorMsg: string }>(),
   },
 });

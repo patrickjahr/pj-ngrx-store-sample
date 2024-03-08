@@ -21,6 +21,15 @@ export class CrudService<T extends BaseEntity> {
     return item;
   }
 
+  deleteItem(itemId: string): void {
+    const index = this.data$$.value.findIndex(({ id }) => id === itemId);
+    if (index < 0) {
+      throw new Error(`Item not found for id: ${itemId}`);
+    }
+    const collection = this.data$$.value.filter(({ id }) => id !== itemId);
+    this.data$$.next(collection);
+  }
+
   updateItem(itemId: string, data: T) {
     const collection = [...this.data$$.value];
     const index = collection.findIndex(({ id }) => id === itemId);

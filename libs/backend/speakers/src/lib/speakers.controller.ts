@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { SpeakersService } from './speakers.service';
 import { Speaker } from '@lt/shared/typescript/domain';
 
@@ -19,5 +19,10 @@ export class SpeakersController {
   @Put(':id')
   updateConference(@Param('id') id: string, @Body() speaker: Speaker): void {
     this.speakersService.updateItem(id, speaker);
+  }
+
+  @Delete(':id')
+  deleteSpeaker(@Param('id') id: string): void {
+    this.speakersService.deleteItem(id);
   }
 }
