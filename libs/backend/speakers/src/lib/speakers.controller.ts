@@ -28,6 +28,6 @@ export class SpeakersController {
   @Delete(':id')
   deleteSpeaker(@Param('id') id: string): void {
     this.speakersService.deleteItem(id);
-    this.speakersGateway.server.emit('speakerDeleted', id);
+    this.speakersGateway.server?.emit('speakerDeleted', id);
   }
 }

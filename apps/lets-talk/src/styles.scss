@@ -2,6 +2,8 @@
 @import "app/styles/sizes";
 @import "app/styles/view-transitions";
 
+@import 'breakpoints';
+
 * {
   margin: 0;
   padding: 0;
@@ -25,6 +27,11 @@
   --white-color: #FFFFFF;
   --white-color-rgb: 255, 255, 255;
   --light-color-rgb: 242, 242, 242;
+
+  @include use(m, l, xl) {
+    grid-template-rows: 1fr;
+    grid-template-columns: 7rem auto;
+  }
 }
 
 html, body {

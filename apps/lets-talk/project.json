@@ -27,7 +27,7 @@
           "apps/lets-talk/src/favicon.ico",
           "apps/lets-talk/src/assets",
           {
-            "input": "libs/shared/angular/ui/src/lib/assets",
+            "input": "./libs/shared/angular/ui/src/lib/assets",
             "glob": "**.*",
             "output": "assets"
           }
@@ -36,6 +36,11 @@
           "@angular/material/prebuilt-themes/pink-bluegrey.css",
           "apps/lets-talk/src/styles.scss"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/styles"
+          ]
+        },
         "scripts": []
       },
       "configurations": {

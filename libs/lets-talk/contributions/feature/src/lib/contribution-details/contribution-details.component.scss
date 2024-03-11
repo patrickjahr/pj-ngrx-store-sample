@@ -1,9 +1,11 @@
+@use 'breakpoints';
+
 :host {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  @media (min-width: 961px) {
+  @include breakpoints.use(m, l, xl) {
     flex-direction: row;
   }
 }

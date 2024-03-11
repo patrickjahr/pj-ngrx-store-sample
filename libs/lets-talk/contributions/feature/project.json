@@ -5,5 +5,13 @@
   "prefix": "lt",
   "tags": [],
   "projectType": "library",
-  "targets": {}
+  "targets": {
+    "options": {
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "libs/styles"
+        ]
+      }
+    }
+  }
 }
