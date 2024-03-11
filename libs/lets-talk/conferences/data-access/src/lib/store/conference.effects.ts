@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, map, of } from 'rxjs';
 import {
   ConferencesApiActions,
   ConferencesPageActions,
@@ -41,6 +41,9 @@ export class ConferenceEffects implements OnInitEffects {
     this.actions$.pipe(
       ofType(ConferencesPageActions.selectItem),
       exhaustMap(({ id }) => {
+        if (!id) {
+          return EMPTY;
+        }
         return this.conferenceService.getConference(id).pipe(
           map((conference) =>
             conference

@@ -27,9 +27,10 @@ export const conferencesFeature = createFeature({
       ...state,
       loadingCollection: true,
     })),
-    on(ConferencesPageActions.selectItem, (state) => ({
+    on(ConferencesPageActions.selectItem, (state, { id }) => ({
       ...state,
       loadingCollection: true,
+      selectedConference: id ? state.selectedConference : null,
     })),
     on(
       ConferencesApiActions.conferencesLoadedSuccess,

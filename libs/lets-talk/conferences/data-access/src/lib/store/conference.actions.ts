@@ -5,7 +5,7 @@ export const ConferencesPageActions = createActionGroup({
   source: 'Conferences Page',
   events: {
     Opened: emptyProps(),
-    SelectItem: props<{ id: string }>(),
+    SelectItem: props<{ id: string | undefined }>(),
   },
 });
 

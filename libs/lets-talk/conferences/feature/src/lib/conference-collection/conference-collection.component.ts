@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '@lt/shared/angular/ui';
 import {
@@ -18,7 +18,7 @@ import { map } from 'rxjs';
   templateUrl: './conference-collection.component.html',
   styleUrl: './conference-collection.component.scss',
 })
-export class ConferenceCollectionComponent {
+export class ConferenceCollectionComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly store = inject(Store);
 
@@ -41,5 +41,9 @@ export class ConferenceCollectionComponent {
   async selectConf(id: string): Promise<void> {
     this.store.dispatch(ConferencesPageActions.selectItem({ id }));
     setTimeout(() => this.router.navigate([`conferences/${id}`]), 32);
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(ConferencesPageActions.selectItem({ id: undefined }));
   }
 }
